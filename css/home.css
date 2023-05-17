@@ -1,0 +1,18 @@
+
+/* PAGINA INICIAL */
+
+.book-img{
+    display: flex;
+    margin-top: 87px;
+    justify-content: center;
+}
+
+.home-title{
+   width: 100%;
+   display: block;
+   text-align: center;
+}
+
+
+
+

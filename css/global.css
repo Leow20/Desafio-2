@@ -7,6 +7,9 @@
   
 }
 
+a{
+    text-decoration: none;
+}
 
 .page-wrapper{
     width: 360px;
@@ -16,35 +19,34 @@
     position: relative;
 }
 
-/* PAGINA INICIAL */
-
-.book-img{
-    display: flex;
-    margin-top: 87px;
-    justify-content: center;
-}
-
-.home-title{
-   width: 100%;
-   display: block;
-   align-content: space-around;
-   text-align: center;
-}
-
-
-
 
 /* CLASSES UTILITÁRIAS */
 .big-title{
     display: inline-block;
     width: 241px;
     font-size: 24px;
+    font-weight: 800;
     line-height: 30px;
+    color: #6368D9;
+    text-align: center;
+}
+
+/*TEXT*/
+.font-pop{
+    font-family: 'Poppins', sans-serif;
+}
+
+.text-color-purple{
     color: #6368D9;
 }
 
-.font-pop{
-    font-family: 'Poppins', sans-serif;
+.text-color-gray{
+    color: #9C98A1;
+}
+
+.text-sm{
+    font-size: 11px;
+    text-align: center;
 }
 
 /* BOTÕES */
@@ -67,5 +69,9 @@
 
 .page-button:hover{
     transform: translateY(3px);
+    background-color: #4c51a5;
+}
+
+.button-login input:hover{
     background-color: #4c51a5;
 }
