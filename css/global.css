@@ -9,6 +9,7 @@
 
 a{
     text-decoration: none;
+    cursor: pointer;
 }
 
 .page-wrapper{
@@ -74,4 +75,26 @@ a{
 
 .button-login input:hover{
     background-color: #4c51a5;
+}
+
+/*PROFILE PICTURE*/
+.picture_input{
+    display: none;
+}
+
+.profile-picture{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #ddd;
+}
+
+.picture_image img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
 }

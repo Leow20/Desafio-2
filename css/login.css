@@ -29,8 +29,13 @@
     border-radius: 30px;
     background-color: #D1D0F9;
     border: none;
+    transition: all 0.2s ease-in-out;
 }
 
+
+.form-login input[type="password"]:hover, .form-login input[type="email"]:hover{
+    border: solid 1px #4c51a5
+}
 
 .form-login input::placeholder{
     font-family: 'Poppins', sans-serif;
@@ -66,6 +71,7 @@
 .button-login input:hover{
     transform: translateY(2.5px);
     background-color: #4c51a5;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
 }
 
 
