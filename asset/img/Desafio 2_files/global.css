@@ -20,37 +20,8 @@ a{
     position: relative;
 }
 
-/*FOOTER*/
-
-footer{
-    width: 290px;
-    display: table;
-    position: absolute;
-    bottom: 0px;
-    left: 35px;
-    z-index: 1000;
-}
-
-.icons-footer{
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-   
-}
-
-#details-icon{
-    margin-top: 0px;
-    margin-bottom: 10px;
-}
 
 /* CLASSES UTILITÁRIAS */
-
-.cursor-pointer{
-    cursor: pointer;
-}
-
-/*TEXT*/
-
 .big-title{
     display: inline-block;
     width: 241px;
@@ -61,21 +32,7 @@ footer{
     text-align: center;
 }
 
-.text-md{
-    font-size: 12px;
-    font-weight: 500;
-}
-
-.text-mdx{
-    font-size: 14px;
-    font-weight: 700;
-}
-
-.text-sm{
-    font-size: 11px;
-    text-align: center;
-}
-
+/*TEXT*/
 .font-pop{
     font-family: 'Poppins', sans-serif;
 }
@@ -88,10 +45,10 @@ footer{
     color: #9C98A1;
 }
 
-.text-color-white{
-    color: #F6F2FF;
+.text-sm{
+    font-size: 11px;
+    text-align: center;
 }
-
 
 /* BOTÕES */
 
@@ -120,34 +77,6 @@ footer{
     background-color: #4c51a5;
 }
 
-.md-button{
-    width: 80px;
-    height: 22px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 30px;
-    margin: 14px 0 0 18px;
-    padding-top: 3px;
-    border: none;
-    color: #FFF;
-    background-color: #D1D0F9;
-    padding-bottom: 3px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    line-height: 15px;
-    font-size: 10px;
-    font-weight: 500;
-    font-family: 'Poppins';
-    color: #6368D9;
-}
-
-.md-button:hover{
-    background-color: #e2e1fa;
-    transform: translateY(2.5px);
-}
-
-
 /*PROFILE PICTURE*/
 .picture_input{
     display: none;
@@ -169,5 +98,3 @@ footer{
     height: 100px;
     border-radius: 50%;
 }
-
-

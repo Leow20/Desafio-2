@@ -2,7 +2,7 @@ var arr = [];
 var emailCreated = false;
 var userLogged = false
 
-function User (email, senha, hole, nome, picture, userLogged) {
+ function User (email, senha, hole, nome, picture, userLogged) {
     event.preventDefault();
     this.email = email;
     this.senha = senha; 
@@ -17,7 +17,6 @@ function createUser(){
    if (localStorage.meuArr){             
       arr = JSON.parse(localStorage.getItem('meuArr')); 
    }
-
    console.log(arr.length)
    let Email = document.getElementById("email").value;
    let Senha = document.getElementById("senha").value;
@@ -79,7 +78,6 @@ function verifyCratedUser(Email, arr){
 }
 
 
-
 function verifyLogin(Email, Senha, arr){
     event.preventDefault();
     let verify = false;
@@ -96,18 +94,18 @@ function verifyLogin(Email, Senha, arr){
             alert("Logado")
             arr[i].userLogged = true;
             window.location.href = './home.html';
-            localStorage.meuArr = JSON.stringify(arr);
             verify = true;
         } else {
             arr[i].userLogged = false;
-            localStorage.meuArr = JSON.stringify(arr);
         }
     }
     if(verify === false){ 
         return alert("Email ou senha invalidas") ;
     }
-    console.log(arr);
 }
+
+
+
 
 function clearItems(){
    arr = [];

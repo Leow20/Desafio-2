@@ -1,0 +1,117 @@
+.box-margin{
+    margin: 60px 0 0 37px;
+}
+
+.subtitle-todo h5{
+    font-weight: 700;
+}
+
+
+.grid-home{
+    width: 290px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.box{
+    width: 286px;
+    height: 77px;
+    border-radius: 15px;
+    margin-top: 8px;
+    background-color: #D1d0f9;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.category-task{
+    font-style: italic;
+}
+
+.text-grid, .category-task, .time-task{
+    width: 230px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-left: 20px;
+    line-height: 15px;
+    padding-bottom: 2px;
+}
+
+.category-task{
+    font-weight: 500;
+    line-height: 18px;
+}
+
+.img-home-grid{
+    position: absolute;
+    top: 24px;
+    right: 21px;
+}
+
+.time-task{
+    font-weight: 500;
+    line-height: 18px;
+    display: flex;
+    justify-content: start;
+    align-items: center; 
+}
+
+.time-task img{
+    margin-right: 6px;
+}
+
+.slider-task{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.day-task-box{
+    width: 45px;
+    height: 53px;
+    border-radius: 10px;
+    background-color: #D1D0F9;
+    margin :21px 0 25px;
+  
+}
+
+.tabs{
+    width: 292px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.task-tabs, #tab-todo{
+    width: 100px;
+    height: 22px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    background-color: #D1D0F9;
+}
+
+#tab-todo{
+    width: 80px;
+    background-color: #6368D9;
+    color: #fff;
+}
+
+.task-tabs span, #tab-todo span{
+    color: #6368D9;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+}
+
+#tab-todo span{
+    color: #FFF;
+}
+
+
+
