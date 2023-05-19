@@ -119,7 +119,7 @@
     justify-content: space-between;
 }
 
-.grid-categorys div{
+ .category-college, .category-work, .category-social,.category-study, .category-home,.category-project{
     width: 100px;
     height: 22px;
     background-color: #D1D0F9;
@@ -129,20 +129,24 @@
     border-radius: 30px;
 }
 
-#category-work{
+.category-college:hover, .category-work:hover, .category-social:hover,.category-study:hover, .category-home:hover,.category-project:hover{
+    background-color: #b4b3f6;
+}
+
+.category-work{
     width: 69px;
 }
 
-#category-social{
+.category-social{
     width: 105px;
 }
 
-#category-study, #category-home{
+.category-study, .category-home{
     width: 72px;
     margin-top: 4px;
 }
 
-#category-project{
+.category-project{
     width: 133px;
     margin-top: 4px;
 }
@@ -153,7 +157,9 @@
     font-weight: 500;
     line-height: 18px;
     color: #6368D9;
+    user-select:none
 }
+
 
 .text-description{
     margin-top: 6px;
@@ -218,6 +224,16 @@
     transform: translateY(2.5px);
     background-color: #4c51a5;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+
+.selected-category{
+    background-color: #6368D9;
+}
+
+.selected-category span{
+    color: #D1D0F9;
 }
 
 

@@ -1,4 +1,5 @@
 var verify = false;
+var arr = [];
 
 if (localStorage.meuArr){             
     arr = JSON.parse(localStorage.getItem('meuArr')); 

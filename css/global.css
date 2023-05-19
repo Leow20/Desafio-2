@@ -29,13 +29,13 @@ footer{
     bottom: 0px;
     left: 35px;
     z-index: 1000;
+    margin-top: 30px;
 }
 
 .icons-footer{
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
-   
 }
 
 #details-icon{

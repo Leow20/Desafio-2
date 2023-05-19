@@ -2,6 +2,11 @@ var arr = [];
 var emailCreated = false;
 var userLogged = false
 
+if (!localStorage.meuArr){             
+    localStorage.meuArr = JSON.stringify(arr);
+ }
+
+
 function User (email, senha, hole, nome, picture, userLogged) {
     event.preventDefault();
     this.email = email;
@@ -9,7 +14,7 @@ function User (email, senha, hole, nome, picture, userLogged) {
     this.hole = hole; 
     this.nome = nome;
     this.picture = picture;
-    this.userLogged = false;
+    this.userLogged = true;
 }
  
 function createUser(){

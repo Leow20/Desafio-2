@@ -14,6 +14,7 @@
 .container-box{
     width:286px;
     display: table;
+    margin-bottom: 80px;
 }
 
 .box{
