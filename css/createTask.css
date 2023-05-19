@@ -1,0 +1,222 @@
+.box-margin{
+    margin: 56px 0 0 37px;
+}
+
+.title-create-task{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 23px;
+}
+
+.title-create-task p{
+    padding-left: 15px;
+}
+
+.form-tasks{ 
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.title-tasks{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.time-tasks{
+    display: flex;
+    flex-direction: row;
+}
+
+.time-tasks div{
+    width: 147px;
+}
+
+.form-tasks label, .time-tasks p{
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6368D9;
+    line-height: 21px;
+}
+
+
+.form-tasks input[type="date"], .form-tasks input[type="text"], .time-tasks input[type="time"]{
+    width: 284px;
+    height: 36px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    border-radius: 30px;
+    background-color: #fff;
+    border: 1px solid #6368D9;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #6368D9;
+    line-height: 21px;
+    cursor: pointer;
+}
+
+.form-tasks input[type="text"]{
+    cursor: text;
+}
+
+.title-tasks input[type="date"]{
+    padding-left: 40px;
+}
+
+.time-tasks input[type="time"]{
+    width: 135px;
+    height: 36px;
+    padding-left: 40px;
+}
+
+.form-tasks input[type="date"], .form-tasks input[type="text"], .time-tasks input[type="time"]{
+    border: solid 1px #4c51a5
+}
+
+#date::-webkit-calendar-picker-indicator{
+    position: absolute;
+    left: 0;
+    opacity: 1;
+    background-image: url('/asset/img/🦆\ icon\ _Calendar_.svg');
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+#date::-webkit-calendar-picker-indicator {
+    padding-left: 10px;
+}
+
+#start-time::-webkit-calendar-picker-indicator, #end-time::-webkit-calendar-picker-indicator{
+    position: absolute;
+    left: 0;
+    opacity: 1;
+    background-image: url('/asset/img/🦆\ icon\ _clocktask_.svg');
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+.title-category, .text-description p{
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6368D9;
+    line-height: 21px;
+}
+
+.grid-categorys{
+    width: 284px;
+    display: flex;
+    margin-top: 8px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.grid-categorys div{
+    width: 100px;
+    height: 22px;
+    background-color: #D1D0F9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+}
+
+#category-work{
+    width: 69px;
+}
+
+#category-social{
+    width: 105px;
+}
+
+#category-study, #category-home{
+    width: 72px;
+    margin-top: 4px;
+}
+
+#category-project{
+    width: 133px;
+    margin-top: 4px;
+}
+
+.grid-categorys span{
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    color: #6368D9;
+}
+
+.text-description{
+    margin-top: 6px;
+    margin-bottom: 40px;
+}
+
+.text-description textarea{
+    width: 284px;
+    height: 107px;
+    border-radius: 20px;
+    resize: none;
+}
+
+.delete-tasks{
+    width: 39px;
+    height: 30px;
+    border-radius: 30px;
+    background-color: #D1D0F9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 66px;
+    right: 237px;
+    transition: all 0.2s ease-in-out;
+}
+
+.delete-tasks:hover{
+    transform: translateY(2.5px);
+    background-color: #ecebf8;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.button-save input{
+    width: 157px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    padding-top: 3px;
+    position: unset;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
+    color: #FFF;
+    background-color: #6368D9;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: 'Poppins';
+    padding-bottom: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    position: absolute;
+    bottom: 66px;
+    right: 71px;
+}
+
+.button-save input:hover{
+    transform: translateY(2.5px);
+    background-color: #4c51a5;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+

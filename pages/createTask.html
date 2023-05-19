@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500;1,700;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/createTask.css">
+    <title>Desafio 2</title>
+</head>
+<body>
+    
+   <main>
+       <div class="page-wrapper">
+           <div class="box-margin">
+
+            <div class="title-create-task">
+                <img src="/asset/img/🦆 icon _arrow back outline_.svg" alt="Seta para tras">
+                <p class="text-mdx font-pop text-color-purple">Create task</p>
+            </div>  
+
+                <form class="form-tasks">
+                    <div class="title-tasks">
+                        <label htmlFor="title" >Title</label>
+                        <input type="text" name="title" id="title">
+                    </div>
+                    <div  class="title-tasks">
+                        <label htmlFor="date" >Date</label>
+                        <input type="date" name="date" id="date">
+                    </div>
+                    <div class="time-tasks">
+                        <div>
+                            <label htmlFor="senha" >Start Time</label>
+                            <input type="time" name="start-time" id="start-time">
+                        </div>
+                       <div>
+                           <label htmlFor="end-time" >End Time</label>
+                           <input type="time" name="end-time" id="end-time" placeholder="end-time">
+                        </div>
+                    </div>
+
+                    <div >
+                        <p class="title-category">Category</p>
+
+                        <div class="grid-categorys">
+                            <div id="category-college">
+                                <span>College stuff</span>
+                            </div>
+                            <div id="category-work">
+                                <span>Work</span>
+                            </div>
+                            <div id="category-social">
+                                <span>Social life</span>
+                            </div>
+                            <div id="category-study">
+                                <span>Study</span>
+                            </div>
+                            <div id="category-project">
+                                <span>Personal project</span>
+                            </div>
+                            <div id="category-home">
+                                <span>Home</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-description">
+                        <p>Description</p>
+                        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                    </div>
+
+                    <div class="buttons-tasks">
+                        <div class="delete-tasks">
+                           <img src="/asset/img/🦆 icon _trash delete bin_.svg" alt="Icone de Lixeira">
+                        </div>
+                        <div class="button-save"> 
+                            <input type="submit" value="Save task"/>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </main> 
+
+    <script src="/js/createTask.js"></script>
+    <script src="/js/index.js"></script>
+
+</body>
+
+</html>
