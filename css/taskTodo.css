@@ -11,6 +11,11 @@
     justify-content: space-between;
 }
 
+.container-box{
+    width:286px;
+    display: table;
+}
+
 .box{
     width: 286px;
     height: 77px;
@@ -111,6 +116,5 @@
 #tab-todo span{
     color: #FFF;
 }
-
 
 

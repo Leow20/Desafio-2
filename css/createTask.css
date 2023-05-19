@@ -165,6 +165,7 @@
     height: 107px;
     border-radius: 20px;
     resize: none;
+    padding: 13px 13px 0 18px;
 }
 
 .delete-tasks{
