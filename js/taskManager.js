@@ -7,6 +7,10 @@ var social = document.querySelector('.category-social');
 var study = document.querySelector('.category-study');
 var project = document.querySelector('.category-project');
 var home = document.querySelector('.category-home');
+var date = document.querySelector('#date');
+var start = document.querySelector('#start-time')
+var end = document.querySelector('#end-time')
+var box = document.querySelector('.box');
 var verifyCollege = false
 var verifyWork = false
 var verifySocial = false
@@ -14,6 +18,8 @@ var verifyStudy = false
 var verifyProject = false
 var verifyHome = false
 var Category = '';
+
+
 
 if (localStorage.meuArr){             
     arr = JSON.parse(localStorage.getItem('meuArr')); 
@@ -203,7 +209,7 @@ for(let i = 0; i < arr.length; i++){
     } 
 }
 
-function Task (userName, title, date, start_time, end_time, category, descrption) {
+function Task (userName, title, date, start_time, end_time, category, descrption, state) {
     event.preventDefault();
     this.userName = userName;
     this.title = title; 
@@ -211,11 +217,13 @@ function Task (userName, title, date, start_time, end_time, category, descrption
     this.start_time = start_time;
     this.end_time = end_time;
     this.category = category;
-    this.descrption    = descrption;
+    this.descrption = descrption;
+    this.state = state;
 }         
 
 function createTask(){
    event.preventDefault();
+   
    if (localStorage.meuArr){             
       arr = JSON.parse(localStorage.getItem('meuArr')); 
    }
@@ -231,13 +239,16 @@ function createTask(){
    let Start_time = document.getElementById("start-time").value;
    let End_time = document.getElementById("end-time").value;
    let Description = document.getElementById("description").value;
-  
+   let State = '';
+ 
    
    if(Title === null || Title === ""){
        return alert("Você Precisa Preencher o campo Title")
     }
 
-    if(Date === null){
+ alert(Date);
+
+    if(Date === null ||Date === '' ){
         return alert("Você Precisa Preencher o campo Date")
     }
 
@@ -253,7 +264,38 @@ function createTask(){
         return alert("Você Precisa Escolher uma Categoria")
      }
 
-     const newTask = new Task(userName, Title, Date, Start_time, End_time, Category, Description);
+     getDateTime();
+     
+     if(date.min > date.value){
+        alert('Não pode isso ai dog')
+        return;
+     }  else {
+        if(date.value === date.min){
+            if(start.value <= start.min){
+                alert('Não pode isso ai dog')
+                return;
+            } else {
+                if(end.value > start.value){
+                    alert('Boa dog')
+                } else{
+                    alert('Não pode isso ai dog')
+                    return;
+                }
+            }
+        } else {
+            if(end.value > start.value){
+                alert('Boa dog')
+            } else {
+                alert('Não pode isso ai dog')
+                return;
+            }
+        }
+
+    }
+            
+     
+
+     const newTask = new Task(userName, Title, Date, Start_time, End_time, Category, Description, State);
     
      myTasks.push(newTask);
     
@@ -270,3 +312,69 @@ function createTask(){
      console.log(myTasks)
      alert('modal');
     }
+
+    function getDateTime() {
+        var currDate = new Date()
+        var year = currDate.getFullYear()
+        var month = (currDate.getMonth() + 1).toString().padStart(2, "0")
+        var day = currDate.getDate().toString().padStart(2, "0")
+        var hour = currDate.getHours()
+        var minutes = currDate.getMinutes()
+        var minDate = `${year}-${month}-${day}`
+            if (hour < 10) {
+                hour = '0' + hour;
+            }
+            if (minutes < 10) {
+                minutes = '0' + hour;
+            }
+        var minTime = `${hour}:${minutes}`
+        date.min = minDate;
+        start.min = minTime;
+    }
+
+    function taskState(){
+        alert('funciono');
+        var currDate = new Date()
+        var year = currDate.getFullYear()
+        var month = (currDate.getMonth() + 1).toString().padStart(2, "0")
+        var day = currDate.getDate().toString().padStart(2, "0")
+        var hour = currDate.getHours()
+        var minutes = currDate.getMinutes()
+        var currentDate = `${year}-${month}-${day}`
+            if (hour < 10) {
+                hour = '0' + hour;
+            }
+            if (minutes < 10) {
+                minutes = '0' + hour;
+            }
+        var currentTime = `${hour}:${minutes}`
+      
+        for(let i = 0; i < myTasks.length; i++){
+            if(userName == myTasks[i].userName){
+                var Start_time = myTasks[i].start_time;
+                var End_time = myTasks[i].end_time;
+                var date = myTasks[i].date;
+                if(date > currentDate){
+                    myTasks[i].state = 'todo';
+                } else if(myTasks[i].date < currentDate){
+                    myTasks[i].state = 'completed'
+                } else{
+                    if(Start_time <= currentTime && End_time >= currentTime){
+                       myTasks[i].state = 'progress';
+                    } else if(Start_time < currentTime && End_time < currentTime){
+                        myTasks[i].state = 'completed';
+                    } else if(Start_time > currentTime){
+                        myTasks[i].state = 'todo';
+                    }
+                }
+                 localStorage.myTasks = JSON.stringify(myTasks);
+                 console.log(myTasks)
+            } 
+            localStorage.myTasks = JSON.stringify(myTasks);
+            console.log(myTasks)
+        }
+    }
+
+
+   
+   
