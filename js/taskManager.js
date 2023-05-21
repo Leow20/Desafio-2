@@ -18,20 +18,23 @@ var verifyStudy = false
 var verifyProject = false
 var verifyHome = false
 var Category = '';
+var createdKey = 0;
+
 
 
 if (!localStorage.myTasks){             
     localStorage.myTasks = JSON.stringify(myTasks);
  }
-
-
+ 
+ if (localStorage.myTasks){             
+     myTasks = JSON.parse(localStorage.getItem('myTasks')); 
+ }
 if (localStorage.meuArr){             
     arr = JSON.parse(localStorage.getItem('meuArr')); 
 }
 
-if (localStorage.myTasks){             
-    myTasks = JSON.parse(localStorage.getItem('myTasks')); 
-}
+
+
 
 function selectedCollege(){
     if(verifyCollege){
@@ -245,6 +248,8 @@ function createTask(){
    let End_time = document.getElementById("end-time").value;
    let Description = document.getElementById("description").value;
    let State = '';
+   
+   
  
    
    if(Title === null || Title === ""){
@@ -298,7 +303,6 @@ function createTask(){
     }
 
      const newTask = new Task(userName, Title, Date, Start_time, End_time, Category, Description, State);
-    
      myTasks.push(newTask);
     
      document.getElementById("title").value = "";
@@ -361,13 +365,15 @@ function createTask(){
                     myTasks[i].state = 'todo';
                 } else if(myTasks[i].date < currentDate){
                     myTasks[i].state = 'completed'
-                    completedQty++;
                 } else{
                     if(Start_time <= currentTime && End_time >= currentTime){
                        myTasks[i].state = 'progress';
                     } else if(Start_time < currentTime && End_time < currentTime){
                         myTasks[i].state = 'completed';
-                        completedQty++;
+                        console.log('aqui ' + currentDate)
+                        if(myTasks[i].date == currentDate){
+                            completedQty++;
+                        }
                     } else if(Start_time > currentTime){
                         myTasks[i].state = 'todo';
                     }
@@ -383,12 +389,13 @@ function createTask(){
        
         function qtyCategory(){
             var nome = '';
-            var currDate = new Date()
-            var year = currDate.getFullYear()
-            var month = (currDate.getMonth() + 1).toString().padStart(2, "0")
-            var day = currDate.getDate().toString().padStart(2, "0")
-            var currentDate = `${year}-${month}-${day}`
-            var task_todo = document.getElementById('text-todo')
+            var currDate = new Date();
+            var year = currDate.getFullYear();
+            var month = (currDate.getMonth() + 1).toString().padStart(2, "0");
+            var day = currDate.getDate().toString().padStart(2, "0");
+            var currentDate = `${year}-${month}-${day}`;
+            var task_todo = document.getElementById('text-todo');
+            var task_completed = document.getElementById('text-completed');
             var college_text = document.getElementById('category-college-text');
             var college_work = document.getElementById('category-work-text');
             var college_home = document.getElementById('category-home-text');
@@ -406,6 +413,13 @@ function createTask(){
             var qtySocial = 0;
             var qtyProject = 0;
             var qtyHome = 0;
+            var qtyCompletedTru = 0;
+
+            for(let i = 0; i < myTasks.length; i++){
+                if(myTasks[i].state === 'completed'){
+                    qtyCompletedTru++;
+                }
+            }
         
             if (localStorage.meuArr){             
                 arr = JSON.parse(localStorage.getItem('meuArr')); 
@@ -459,15 +473,24 @@ function createTask(){
     
                 var totalQty = qtyWork + qtyCollege + qtyStudy + qtySocial + qtyProject + qtyHome;
      
-                console.log(completedQty)
+                console.log(qtyCollege)
+                console.log(qtyWork)
+                console.log(qtyStudy)
+                console.log(qtySocial)
+                console.log(qtyProject)
+                console.log(qtyHome)
 
+                if(task_completed != null){
+                    task_completed.innerText = 'You have completed ' + qtyCompletedTru +' task!' 
+                }
                 
                 var calcBar = 0;
 
                  if(completedQty > 0) {
                     calcBar = Math.floor((((totalQty - completedQty) * 100) / completedQty)) ;
+                    calcBar = 100 - calcBar;
                 } else {
-                    calcBar = totalQty - totalQty;
+                    calcBar = 0;
                 }
                 
                  if(totalQty > 0 ){
@@ -479,6 +502,8 @@ function createTask(){
                 
                 task_todo.innerHTML = 'You have '+ totalQty + ' more tasks to do!';
 
+               
+
             } else{
                 percentage_text.innerText = ''; 
                 percentage_bar.setAttribute("style", "width:" + 0 + "%;")
@@ -488,18 +513,18 @@ function createTask(){
                 subtitle_home.setAttribute("style", "margin-top: 60px;")
             }
     
-                college_text.innerText = qtyCollege + ' Tasks'; 
-                college_work.innerText = qtyWork + ' Tasks'; 
-                college_social.innerText = qtySocial + ' Sociaç'; 
-                college_study.innerText = qtyStudy + ' Study'; 
-                college_project.innerText = qtyProject + ' Project'; 
-                college_home.innerText = qtyHome + ' Home'; 
-    
-                localStorage.myTasks = JSON.stringify(myTasks);
+            localStorage.myTasks = JSON.stringify(myTasks);
+            
+            college_text.innerText = qtyCollege + ' Tasks'; 
+            college_work.innerText = qtyWork + ' Tasks'; 
+            college_social.innerText = qtySocial + ' Sociaç'; 
+            college_study.innerText = qtyStudy + ' Study'; 
+            college_project.innerText = qtyProject + ' Project'; 
+            college_home.innerText = qtyHome + ' Home'; 
             }           
             localStorage.myTasks = JSON.stringify(myTasks);
         }
-            }
+      }
     }
    
   

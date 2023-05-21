@@ -147,7 +147,7 @@ footer{
     background-color: #4c51a5;
 }
 
-.md-button{
+.md-button, .md-button-profile{
     width: 80px;
     height: 22px;
     display: flex;
@@ -169,7 +169,7 @@ footer{
     color: #6368D9;
 }
 
-.md-button:hover{
+.md-button:hover, .md-button-profile:hover{
     background-color: #e2e1fa;
     transform: translateY(2.5px);
 }

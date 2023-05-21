@@ -6,6 +6,8 @@ var actualTab = '';
 var tab_todo = document.getElementById('todo');
 var tab_progress = document.querySelector('#progress');
 var tab_completed = document.querySelector('#completed');
+var footer = document.getElementById('footer');
+var qtyBox = 0;
 
 
 
@@ -64,6 +66,7 @@ function showCompleted(){
 
 
 function innerTask(){
+    qtyBox = 0;
     if(actualTab != lastTab){
         container_box.innerHTML = ""; 
     }
@@ -87,6 +90,8 @@ function innerTask(){
             tab_completed.classList.add('selected-tab')
         }
 
+        
+
         if(userName === myTasks[i].userName ){
             Category = myTasks[i].category;
             Title = myTasks[i].title;
@@ -99,9 +104,13 @@ function innerTask(){
        "</span> <p class='text-grid font-pop text-color-purple'>"+ Title +
        "</p><p class='time-task font-pop text-color-purple'><img src='/asset/img/🦆 icon _clock_.svg' alt='imagem relogio'>"+ Start_time+" - "+ 
        End_time +"</p></div>"
-       console.log('tp da tab 1 ' + myTasks[i].state)
-       console.log('atual 1 ' + actualTab) 
+       qtyBox++;       
     } 
+    if(qtyBox > 3){
+        footer.setAttribute("style", "position: sticky;")
+       } else{
+        footer.setAttribute("style", "position: absolute;")
+       }
 } 
 
         
