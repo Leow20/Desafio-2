@@ -20,6 +20,16 @@ a{
     position: relative;
 }
 
+.box-user{
+    width: 286px;
+    height: 149px;
+    margin: 16px 0 0 37px;
+    border-radius: 20px;
+    background-color: #6368D9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    position: relative;
+}
+
 /*FOOTER*/
 
 footer{
@@ -63,6 +73,10 @@ footer{
 }
 
 /*TEXT*/
+
+.font-normal{
+    font-weight: 500;
+}
 
 .big-title{
     display: inline-block;

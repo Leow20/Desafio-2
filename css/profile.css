@@ -18,14 +18,15 @@
    height: 44px;
    display: flex;
    flex-direction: row;
-   margin: 38px 0 0 36px;
+   margin: 38px 0 0 0px;
 }
 
-.image-home img{
-    width: 44px;
-    height: 44px;
+.image-profile img{
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     display: table;
+    border: 1px solid #6368D9;
 }
 
 .user-text{
@@ -39,10 +40,12 @@
 }
 
 .subtitle-home{
-    margin: 100px 0 0 37px;
+    margin: 40px 0 0 37px;
 }
 
-
+.box-user{
+    margin: 96px 0 0 0px;
+}
 
 .tasks-completed{
     padding-top: 20px;
@@ -83,9 +86,9 @@
     line-height: 17px;
 }
 
-.box-img-home{
+.box-img-profile{
     position: absolute;
-    bottom: 0px;
+    bottom: 23px;
     right: 8px;
 }
 

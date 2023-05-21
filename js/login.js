@@ -6,6 +6,46 @@ if (!localStorage.meuArr){
     localStorage.meuArr = JSON.stringify(arr);
  }
 
+const inputFile = document.querySelector('#profile-picture');
+const pictureImage = document.querySelector('.picture_image');
+const img = document.createElement('img');
+
+
+var imagem = document.getElementById('profile-picture'); 
+var caminhoCompleto = imagem;
+
+
+inputFile.addEventListener('change', function(e){
+    const inputTarget = e.target;
+    const file = inputTarget.files[0];
+  
+
+    if(file){
+        const reader = new FileReader();
+        console.log(reader)
+        reader.addEventListener('load', function(e){
+            const readerTarget = e.target;
+
+            img.src = readerTarget.result;
+
+            img.classList.add('picture_image');
+            console.log(readerTarget.result)
+            pictureImage.innerHTML = "";
+            pictureImage.appendChild(img);
+            
+        })
+
+            localStorage.meuArr = JSON.stringify(arr);
+        
+        var src = reader.readAsDataURL(file); // picture SRC aqui 
+        alert(src)
+
+    } else{
+        pictureImage
+    }
+    
+})
+
 
 function User (email, senha, hole, nome, picture, userLogged) {
     event.preventDefault();
@@ -23,12 +63,17 @@ function createUser(){
       arr = JSON.parse(localStorage.getItem('meuArr')); 
    }
 
+   for(let i = 0; i < arr.length; i++){
+        arr[i].userLogged = false;
+        localStorage.meuArr = JSON.stringify(arr);
+}
+
    console.log(arr.length)
    let Email = document.getElementById("email").value;
    let Senha = document.getElementById("senha").value;
    let Nome = document.getElementById("nome").value;
    let Hole = document.getElementById("hole").value;
-   let Picture = document.getElementById("profile-picture").value;
+   let Picture = img.src;
   
    
    if(Email === null || Email === ""){
@@ -83,8 +128,6 @@ function verifyCratedUser(Email, arr){
         }
 }
 
-
-
 function verifyLogin(Email, Senha, arr){
     event.preventDefault();
     let verify = false;
@@ -113,6 +156,7 @@ function verifyLogin(Email, Senha, arr){
     }
     console.log(arr);
 }
+
 
 function clearItems(){
    arr = [];

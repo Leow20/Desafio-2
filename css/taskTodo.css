@@ -88,7 +88,7 @@
     margin-bottom: 25px;
 }
 
-.task-tabs, #tab-todo{
+.task-tabs{
     width: 100px;
     height: 22px;
     display: flex;
@@ -100,13 +100,8 @@
     cursor: pointer;
 }
 
-#tab-todo{
-    width: 80px;
-    background-color: #6368D9;
-    color: #fff;
-}
 
-.task-tabs span, #tab-todo span{
+.task-tabs span{
     color: #6368D9;
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
@@ -114,7 +109,16 @@
     line-height: 18px;
 }
 
-#tab-todo span{
+#todo{
+    width: 80px;
+}
+
+.selected-tab{
+    background-color: #6368D9;
+    color: #fff;
+}
+
+.selected-tab span{
     color: #FFF;
 }
 
