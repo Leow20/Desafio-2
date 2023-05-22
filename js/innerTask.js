@@ -28,8 +28,10 @@ for(let i = 0; i < arr.length; i++){
         Name = arr[i].nome;
         console.log( Name)
         console.log('poxa ' + arr[i].picture)
-        user.innerHTML = Name;
-        Picture.src =  arr[i].picture;;
+       if(user != null){
+           user.innerHTML = Name;
+           Picture.src =  arr[i].picture;;
+        }
     } 
 }
 
@@ -50,6 +52,7 @@ console.log(myTasks)
 
 var lastTab = '';
 
+
 function showTodo(){
     actualTab = 'todo';
     
@@ -64,6 +67,10 @@ function showCompleted(){
     
 }
 
+if(pageCache == 'profile.html'){
+    showCompleted()
+    innerTask()
+}
 
 function innerTask(){
     qtyBox = 0;

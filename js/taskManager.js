@@ -33,6 +33,15 @@ if (localStorage.meuArr){
     arr = JSON.parse(localStorage.getItem('meuArr')); 
 }
 
+if (!localStorage.pageCache){             
+    localStorage.pageCache = JSON.stringify(pageCache);
+ }
+
+ if (localStorage.pageCache){             
+    pageCache = JSON.parse(localStorage.getItem('pageCache')); 
+}
+
+
 
 
 
@@ -494,6 +503,8 @@ function createTask(){
                 }
                 
                  if(totalQty > 0 ){
+                
+             if(percentage_text != null){    
                 percentage_text.innerText = calcBar + '% Completed'; 
 
                 percentage_bar.setAttribute("style", "width:" + calcBar + "%;")
@@ -501,7 +512,7 @@ function createTask(){
                 totalQty = totalQty - completedQty;
                 
                 task_todo.innerHTML = 'You have '+ totalQty + ' more tasks to do!';
-
+             }
                
 
             } else{
@@ -515,19 +526,36 @@ function createTask(){
     
             localStorage.myTasks = JSON.stringify(myTasks);
             
+            console.log(qtyCollege + 'aqui ooooooooo')
+
+            alert(pageCache)
+
+            if(pageCache != 'taskTodo.html'){
             college_text.innerText = qtyCollege + ' Tasks'; 
             college_work.innerText = qtyWork + ' Tasks'; 
             college_social.innerText = qtySocial + ' Sociaç'; 
             college_study.innerText = qtyStudy + ' Study'; 
             college_project.innerText = qtyProject + ' Project'; 
             college_home.innerText = qtyHome + ' Home'; 
+            }
             }           
             localStorage.myTasks = JSON.stringify(myTasks);
         }
       }
     }
    
-  
+
+    function clearTask(){
+        document.getElementById("title").value = "";
+        document.getElementById("date").value = "";
+        document.getElementById("start-time").value = "";
+        document.getElementById("end-time").value = "";
+        document.getElementById("description").value = "";
+        Category = '';
+        unselect();
+    }
+
+ 
 
    
     

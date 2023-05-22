@@ -14,6 +14,8 @@ var container = document.querySelector('.container-box');
 var day_completed = document.querySelector('.day-completed');
 var verifyFirtsTime = false;
 var verify = false;
+var verifyToday = false;
+var todayTru = '';
 
           
 var diasParaDiminuir = 1;
@@ -39,11 +41,7 @@ for(let i = 0; i < arr.length; i++){
     
 
     for(let j = 0; j < myTasks.length; j++){
-        
-        qtyFor = 0;
-        
-        // Defina o número de dias que deseja diminuir
-       
+
 
         // Obtém o valor do ano
         var ano = dataAtual.getFullYear();
@@ -53,19 +51,24 @@ for(let i = 0; i < arr.length; i++){
     
         // Obtém o valor do dia
         var dia = formatarNumero(dataAtual.getDate());
- 
-        var hora = formatarNumero(dataAtual.getHours());
-
-        // Obtém o valor dos minutos
-
       
+        var hora = formatarNumero(dataAtual.getHours());
         
+        // Obtém o valor dos minutos
 
         var minutos = formatarNumero(dataAtual.getMinutes());
 
-        var currentTime = `${hora}:${minutos}`; 
+        console.log(`${hora}:${minutos}` + 'aaaaaaaaaaaaaaaaaaaaa')
+        console.log(currentTime)
+
+        var currentTime = parseInt(`${hora}:${minutos}`); 
         var currDate = `${ano}-${mes}-${dia}`
-            
+        
+        if(!verifyToday){
+            todayTru = `${ano}-${mes}-${dia}`;
+            verifyToday = true;
+        }
+ 
         dataAtual.setDate(dataAtual.getDate() - diasParaDiminuir);
 
     
@@ -77,42 +80,92 @@ for(let i = 0; i < arr.length; i++){
                 console.log('loop')
                 
                 console.log(diasParaDiminuir + ' diminuir')
+
+                
                 
                
                 
-             if(myTasks[k].userName == nome && myTasks[k].date == currDate){     
-                   
-                console.log('match')
+             if(myTasks[k].userName == nome && myTasks[k].date == currDate && myTasks[k].state == 'completed'){     
+                      
+                var tasksCompleted = 0;
 
+             
+                console.log(tasksCompleted + 'ddddddddddddddd')
+            
+
+                var AtualDate = new Date();
+                var horaAtual = AtualDate.getHours();
+                var minutosAtual = AtualDate.getMinutes();
+                
+                var tempoTarefa = myTasks[k].end_time.split(":"); // Divide a string do end_time em horas e minutos
+                var horaTarefa = parseInt(tempoTarefa[0]); // Obtém as horas da tarefa
+                var minutosTarefa = parseInt(tempoTarefa[1]); // Obtém os minutos da tarefa
+              
+                var dataTarefa = new Date(AtualDate.getFullYear(), AtualDate.getMonth(), AtualDate.getDate(), horaTarefa, minutosTarefa);
+
+                var diferencaMinutos = Math.floor((dataTarefa - AtualDate) / (1000 * 60));
+
+                var mensagem = "Concluída ";
+                
+                console.log(diferencaMinutos + ' diferenca de minutps')
+                console.log(tempoTarefa + ' tempo tarefea') 
+
+              
+
+
+                if (diferencaMinutos > 0) {
+                  var diasCalc = Math.floor(diferencaMinutos / (24 * 60)); // Calcula a diferença em dias
+                  var horasCalc = Math.floor((diferencaMinutos % (24 * 60)) / 60); // Calcula a diferença em horas
+                  var minutosCalc = diferencaMinutos % 60; // Calcula a diferença em minutos
+
+                  console.log(minutosCalc + ' minutos calc')
+                
+                  if (diasCalc > 0) {
+                    mensagem += diasCalc + (diasCalc === 1 ? " dia " : " dias ");
+                  }
+                
+                  mensagem += horasCalc + "h " + minutosCalc + "min atrás"; 
+                } else {
+                  mensagem += "hoje " + minutosCalc + " min atrás";
+                }
+                      
+                  
+
+                   console.log(mensagem + 'mensagem2')
+
+
+                
                     if(!verifyFirtsTime){
                         verifyFirtsTime = true;
                         console.log('first time')
-                        if(myTasks[k].date == currDate && !verify){
-                            container.innerHTML += "<p class='day-notification'>Today</p><div class='box first'><span class='category-task font-pop text-color-purple'>" + (myTasks[k].end_time - currentTime) + 
+                        
+                        if(myTasks[k].date == todayTru && !verify){
+                            container.innerHTML += "<p class='day-notification'>Today</p><div class='box first'><span class='category-task font-pop text-color-purple'>" + mensagem + 
                             "</span> <p class='text-grid font-pop text-color-purple'>"+ myTasks[k].title +
                             "</p>"
                             console.log('hoje')
-                                today = currDate;
+                               // today = currDate;
                                 verify = true;
                             
                         }else if(myTasks[k].date == Ontem){
                             console.log('ontem')
-                            container.innerHTML += "<p class='day-notification'>Yesterday</p><div class='box '><span class='category-task font-pop text-color-purple'>" + (myTasks[k].end_time - currentTime) + 
+                            container.innerHTML += "<p class='day-notification'>Yesterday</p><div class='box '><span class='category-task font-pop text-color-purple'>" + mensagem + 
                             "</span> <p class='text-grid font-pop text-color-purple'>"+ myTasks[k].title +
                             "</p>"
                         } else {
                             console.log('dia tal')
-                            container.innerHTML +="<p class='day-notification'>"+ currDate +"</p><div class='box '><span class='category-task font-pop text-color-purple'>" + (myTasks[k].end_time - currentTime) + 
+                            container.innerHTML +="<p class='day-notification'>"+ currDate +"</p><div class='box '><span class='category-task font-pop text-color-purple'>" + mensagem + 
                             "</span> <p class='text-grid font-pop text-color-purple'>"+ myTasks[k].title +
                             "</p>"
                         }
                       
                     } else{   
-                        container.innerHTML += "<div class='box '><span class='category-task font-pop text-color-purple'>" + (myTasks[k].end_time - currentTime) + 
+                        container.innerHTML += "<div class='box '><span class='category-task font-pop text-color-purple'>" + mensagem + 
                         "</span> <p class='text-grid font-pop text-color-purple'>"+ myTasks[k].title +
                         "</p>"
                     }
-                }
+                
+            }
         } 
       
         // Obtém o valor da data atual e subtrai o número de dias
@@ -126,3 +179,6 @@ for(let i = 0; i < arr.length; i++){
 function formatarNumero(valor) {
     return valor < 10 ? `0${valor}` : valor;
 }
+
+
+

@@ -13,7 +13,7 @@
     <script src="/js/verifyLogin.js"></script>
     <title>Desafio 2</title>
 </head>
-<body >
+<body onload="cachePage('notification.html')">
     <main>
         <div class="page-wrapper" >
            <div class="box-margin">
@@ -33,11 +33,11 @@
 
            <footer>
                <div class="icons-footer">
-                   <img class="cursor-pointer" src="/asset/img/Vectora.svg" alt="Home">
-                   <img class="cursor-pointer" src="/asset/img/Vector-1.svg" alt="Agenda">
-                   <img class="cursor-pointer" id="details-icon" src="/asset/img/🦆 icon _plus circle_.png" alt="Icone de Detalhes">
-                   <img class="cursor-pointer" src="/asset/img/Vector-3.svg" alt="Icone de Pesquisa">
-                   <img class="cursor-pointer" src="/asset/img/🦆 icon _profile circle_.svg" alt="Perfil">
+                <img class="cursor-pointer" src="/asset/img/Vectora.svg" alt="Home" onclick="linkPages('./home.html')">
+                <img class="cursor-pointer" src="/asset/img/Vector-1.svg" alt="Agenda" onclick="linkPages('./taskTodo.html')">
+                <img class="cursor-pointer" id="details-icon" src="/asset/img/🦆 icon _plus circle_.png" alt="Icone de Detalhes" onclick="linkPages('./createTask.html')">
+                <img class="cursor-pointer" src="/asset/img/Vector-3.svg" alt="Icone de Pesquisa">
+                <img class="cursor-pointer" src="/asset/img/🦆 icon _profile circle_.svg" alt="Perfil" onclick="linkPages('./profile.html')">
                </div>
            </footer>
         </div>

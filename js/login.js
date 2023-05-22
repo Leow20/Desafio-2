@@ -157,10 +157,18 @@ function verifyLogin(Email, Senha, arr){
     console.log(arr);
 }
 
-
-function clearItems(){
-   arr = [];
-   localStorage.meuArr = JSON.stringify(arr);   
+function logOut(){
+    console.log('click')
+    for(let i = 0; i < arr.length; i++){
+        console.log('loop')
+        arr[i].userLogged = false;
+        console.log(arr[i].userLogged)
+        localStorage.meuArr = JSON.stringify(arr);
+        alert('Você foi desconectado com sucesso. Volte em breve!')
+        window.location.href = './login.html'
+    }
+    console.log(arr);
 }
+
 
 

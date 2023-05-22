@@ -19,7 +19,7 @@
            <div class="box-margin">
 
             <div class="title-create-task">
-                <img src="/asset/img/🦆 icon _arrow back outline_.svg" alt="Seta para tras">
+                <img class="cursor-pointer" src="/asset/img/🦆 icon _arrow back outline_.svg" alt="Seta para tras" onclick="pageReturn()">
                 <p class="text-mdx font-pop text-color-purple">Create task</p>
             </div>  
 
@@ -73,8 +73,8 @@
                     </div>
 
                     <div class="buttons-tasks">
-                        <div class="delete-tasks">
-                           <img src="/asset/img/🦆 icon _trash delete bin_.svg" alt="Icone de Lixeira">
+                        <div class="delete-tasks cursor-pointer">
+                           <img src="/asset/img/🦆 icon _trash delete bin_.svg" alt="Icone de Lixeira" onclick="clearTask()">
                         </div>
                         <div class="button-save"> 
                             <input type="submit" value="Save task" onclick="createTask(); taskState()"/>

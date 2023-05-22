@@ -12,7 +12,7 @@
     <script src="/js/verifyLogin.js"></script>
     <title>Desafio 2</title>
 </head>
-<body onload="taskState()">
+<body onload="taskState(); cachePage('home.html')" >
     <main>
         <div class="page-wrapper">
             <div class="info-user">
@@ -38,7 +38,7 @@
                 </div>
                 <h3 id="text-todo" class="tasks-todo text-color-white text-color-purple font-pop text-mdx">You have 3 more tasks to do!</h3>
                 <div > 
-                    <button class="md-button">Details</button>
+                    <button class="md-button" onclick="linkPages('./taskTodo.html')">Details</button>
                 <div class="box-img-home">
                     <img src="/asset/img/Diary.png" alt="Diario de Anotações">
                 </div>
@@ -83,10 +83,10 @@
         <footer>
             <div class="icons-footer">
                 <img class="cursor-pointer" src="/asset/img/Vectora.svg" alt="Home">
-                <img class="cursor-pointer" src="/asset/img/Vector-1.svg" alt="Agenda">
-                <img class="cursor-pointer" id="details-icon" src="/asset/img/🦆 icon _plus circle_.png" alt="Icone de Detalhes">
-                <img class="cursor-pointer" src="/asset/img/Vector-3.svg" alt="Icone de Pesquisa">
-                <img class="cursor-pointer" src="/asset/img/🦆 icon _profile circle_.svg" alt="Perfil">
+                <img class="cursor-pointer" src="/asset/img/Vector-1.svg" alt="Agenda" onclick="linkPages('./taskTodo.html')">
+                <img class="cursor-pointer" id="details-icon" src="/asset/img/🦆 icon _plus circle_.png" alt="Icone de Detalhes" onclick="linkPages('./createTask.html')">
+                <img class="cursor-pointer" src="/asset/img/Vector-3.svg" alt="Icone de Pesquisa" onclick="linkPages('./notification.html')">
+                <img class="cursor-pointer" src="/asset/img/🦆 icon _profile circle_.svg" alt="Perfil" onclick="linkPages('./profile.html')">
             </div>
         </footer>
     </main> 
