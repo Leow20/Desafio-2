@@ -3,6 +3,7 @@ var emailCreated = false;
 var userLogged = false
 
 
+ 
 if (!localStorage.meuArr){             
     localStorage.meuArr = JSON.stringify(arr);
  }
@@ -273,15 +274,36 @@ function logOut(){
         });
           
 
-        function showPassword(){
-            console.log('click')
+        function showPassword() {
             var passwordInput = document.getElementById('senha');
+            var slashEyeIcon = document.getElementById('slash-eye');
+            var eyeIcon = document.getElementById('eye');
+          
             if (passwordInput.type === 'password') {
               passwordInput.type = 'text';
+              slashEyeIcon.style.display = 'none';
+              eyeIcon.style.display = 'inline';
             } else {
               passwordInput.type = 'password';
+              slashEyeIcon.style.display = 'inline';
+              eyeIcon.style.display = 'none';
             }
           }
+
+          
+          var hasVisitedBefore = localStorage.getItem('hasVisitedBefore');
+
+      
+          if (hasVisitedBefore) {
+            document.getElementById('welcome-message').innerHTML = 'Welcome<br>Back';
+        } else {
+            document.getElementById('welcome-message').innerHTML = 'Welcome';
+            
+            localStorage.setItem('hasVisitedBefore', true);
+          }
+            
+  
+    
           
 
    
