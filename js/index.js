@@ -8,6 +8,18 @@ if (!localStorage.pageCache){
     pageCache = JSON.parse(localStorage.getItem('pageCache')); 
 }
 
+if (!localStorage.meuArr){             
+    localStorage.meuArr = JSON.stringify(arr);
+ }
+
+ if (localStorage.myTasks){             
+    myTasks = JSON.parse(localStorage.getItem('myTasks')); 
+}
+
+if (localStorage.meuArr){             
+    arr = JSON.parse(localStorage.getItem('meuArr')); 
+}
+
 function linkPages(url){
     window.location.href = url
 }

@@ -12,10 +12,12 @@ if (localStorage.myTasks){
 
 var container = document.querySelector('.container-box');
 var day_completed = document.querySelector('.day-completed');
+var footer = document.querySelector('footer')
 var verifyFirtsTime = false;
 var verify = false;
 var verifyToday = false;
 var todayTru = '';
+var qtyBox = 0;
 
           
 var diasParaDiminuir = 1;
@@ -37,6 +39,13 @@ var qtyFor = 0;
 for(let i = 0; i < arr.length; i++){
     if(arr[i].userLogged === true){
     nome = arr[i].email;
+    user = arr[i].nome;
+
+    if(qtyBox > 3){
+        footer.setAttribute("style", "position: sticky;")
+       } else{
+        footer.setAttribute("style", "position: absolute;")
+       }
 
     
 
@@ -58,8 +67,6 @@ for(let i = 0; i < arr.length; i++){
 
         var minutos = formatarNumero(dataAtual.getMinutes());
 
-        console.log(`${hora}:${minutos}` + 'aaaaaaaaaaaaaaaaaaaaa')
-        console.log(currentTime)
 
         var currentTime = parseInt(`${hora}:${minutos}`); 
         var currDate = `${ano}-${mes}-${dia}`
@@ -75,101 +82,241 @@ for(let i = 0; i < arr.length; i++){
              verifyFirtsTime = false;
 
              for(let k = 0; k < myTasks.length; k++){
-                console.log(myTasks[k].date + " data task")
-                console.log(currDate + ' data atual')
-                console.log('loop')
                 
-                console.log(diasParaDiminuir + ' diminuir')
-
-                
-                
-               
-                
-             if(myTasks[k].userName == nome && myTasks[k].date == currDate && myTasks[k].state == 'completed'){     
+             if(myTasks[k].userName == nome && myTasks[k].date == currDate){     
                       
-                var tasksCompleted = 0;
+                var dataAt = new Date();
 
-             
-                console.log(tasksCompleted + 'ddddddddddddddd')
-            
+                // Array para armazenar as notificações das tarefas concluídas
+                var notificacoesConcluidas = [];
+                // Array para armazenar as notificações das tarefas em progresso
+                var notificacoesProgresso = [];
+                // Array para armazenar as notificações das tarefas a serem feitas
+                var notificacoesToDo = [];
 
-                var AtualDate = new Date();
-                var horaAtual = AtualDate.getHours();
-                var minutosAtual = AtualDate.getMinutes();
+                // Loop pelas tarefas
                 
-                var tempoTarefa = myTasks[k].end_time.split(":"); // Divide a string do end_time em horas e minutos
-                var horaTarefa = parseInt(tempoTarefa[0]); // Obtém as horas da tarefa
-                var minutosTarefa = parseInt(tempoTarefa[1]); // Obtém os minutos da tarefa
-              
-                var dataTarefa = new Date(AtualDate.getFullYear(), AtualDate.getMonth(), AtualDate.getDate(), horaTarefa, minutosTarefa);
+                var task = myTasks[k];
 
-                var diferencaMinutos = Math.floor((dataTarefa - AtualDate) / (1000 * 60));
+                if (task.state === 'completed') {
+                    // Código para tarefas concluídas (mesmo código do exemplo anterior)
+                    var dataConclusao = new Date(task.date + ' ' + task.end_time);
+                    var diferencaMilissegundos = dataAt - dataConclusao;
+                    var diferencaMinutos = Math.floor(diferencaMilissegundos / (1000 * 60));
+                    var notificacao = {
+                    diferencaMinutos: diferencaMinutos,
+                    titulo: task.title
+                    };
+                    notificacoesConcluidas.push(notificacao);
+                } else if (task.state === 'progress') {
+                    // Código para tarefas em progresso (mesmo código do exemplo anterior)
+                    var dataInicio = new Date(task.date + ' ' + task.start_time);
+                    var diferencaMilissegundos = dataAt - dataInicio;
+                    var diferencaMinutos = Math.floor(diferencaMilissegundos / (1000 * 60));
+                    var notificacao = {
+                    diferencaMinutos: diferencaMinutos,
+                    titulo: task.title
+                    };
+                    notificacoesProgresso.push(notificacao);
+                } else if (task.state === 'todo') {
+                    // Código para tarefas a serem feitas
+                    var dataInicio = new Date(task.date + ' ' + task.start_time);
+                    var diferencaMilissegundos = dataInicio - dataAt;
+                    var diferencaMinutos = Math.floor(diferencaMilissegundos / (1000 * 60));
 
-                var mensagem = "Concluída ";
-                
-                console.log(diferencaMinutos + ' diferenca de minutps')
-                console.log(tempoTarefa + ' tempo tarefea') 
-
-              
-
-
-                if (diferencaMinutos > 0) {
-                  var diasCalc = Math.floor(diferencaMinutos / (24 * 60)); // Calcula a diferença em dias
-                  var horasCalc = Math.floor((diferencaMinutos % (24 * 60)) / 60); // Calcula a diferença em horas
-                  var minutosCalc = diferencaMinutos % 60; // Calcula a diferença em minutos
-
-                  console.log(minutosCalc + ' minutos calc')
-                
-                  if (diasCalc > 0) {
-                    mensagem += diasCalc + (diasCalc === 1 ? " dia " : " dias ");
-                  }
-                
-                  mensagem += horasCalc + "h " + minutosCalc + "min atrás"; 
-                } else {
-                  mensagem += "hoje " + minutosCalc + " min atrás";
+                    // Verifica se a tarefa vai começar em 5 minutos
+                    if (diferencaMinutos <= 5) {
+                    var notificacao = {
+                        diferencaMinutos: diferencaMinutos,
+                        titulo: task.title
+                    };
+                    notificacoesToDo.push(notificacao);
+                    }
                 }
-                      
-                  
-
-                   console.log(mensagem + 'mensagem2')
-
-
                 
+
+                // Ordena as notificações das tarefas concluídas com base na diferença de tempo em ordem decrescente
+                notificacoesConcluidas.sort(function(a, b) {
+                return b.diferencaMinutos - a.diferencaMinutos;
+                });
+
+                // Ordena as notificações das tarefas em progresso com base na diferença de tempo em ordem decrescente
+                notificacoesProgresso.sort(function(a, b) {
+                return b.diferencaMinutos - a.diferencaMinutos;
+                });
+
+                // Exibe as notificações das tarefas concluídas na ordem desejada
+                for (var n = 0; n < notificacoesConcluidas.length; n++) {
+                var notificacao = notificacoesConcluidas[n];
+              
+                var mensagemCompleted = '';
+
+                if (notificacao.diferencaMinutos > 0) {
+                    var dias = Math.floor(notificacao.diferencaMinutos / (24 * 60));
+                    var horas = Math.floor((notificacao.diferencaMinutos % (24 * 60)) / 60);
+                    var minutos = notificacao.diferencaMinutos % 60;
+
+                    if (dias > 0) {
+                    mensagemCompleted += dias + (dias === 1 ? ' day ' : ' days ');
+                    } 
+
+                    mensagemCompleted += horas + 'h ' + minutos + 'min ago';
+
                     if(!verifyFirtsTime){
                         verifyFirtsTime = true;
-                        console.log('first time')
+                       
                         
                         if(myTasks[k].date == todayTru && !verify){
-                            container.innerHTML += "<p class='day-notification'>Today</p><div class='box first'><span class='category-task font-pop text-color-purple'>" + mensagem + 
-                            "</span> <p class='text-grid font-pop text-color-purple'>"+ myTasks[k].title +
-                            "</p>"
-                            console.log('hoje')
+                            container.innerHTML += "<p class='day-notification'>Today</p><div class='box first'><span class='category-task font-pop text-color-purple'>" + mensagemCompleted + 
+                            "</span> <p class='text-grid font-pop text-color-purple'>Congrats, your <b>"+ myTasks[k].title +"</b> class is now completed."
+                            "</p>" 
+
+                            qtyBox++;
+
+             
+                         
                                // today = currDate;
                                 verify = true;
                             
                         }else if(myTasks[k].date == Ontem){
-                            console.log('ontem')
-                            container.innerHTML += "<p class='day-notification'>Yesterday</p><div class='box '><span class='category-task font-pop text-color-purple'>" + mensagem + 
-                            "</span> <p class='text-grid font-pop text-color-purple'>"+ myTasks[k].title +
-                            "</p>"
+                         
+                            container.innerHTML += "<p class='day-notification'>Yesterday</p><div class='box'><span class='category-task font-pop text-color-purple'>" + mensagemCompleted + 
+                            "</span> <p class='text-grid font-pop text-color-purple'>Congrats, your <b>"+ myTasks[k].title +"</b> class is now completed."
+                            "</p>" 
+                            qtyBox++;   
                         } else {
-                            console.log('dia tal')
-                            container.innerHTML +="<p class='day-notification'>"+ currDate +"</p><div class='box '><span class='category-task font-pop text-color-purple'>" + mensagem + 
-                            "</span> <p class='text-grid font-pop text-color-purple'>"+ myTasks[k].title +
-                            "</p>"
-                        }
+                     
+                            container.innerHTML += "<p class='day-notification'>"+ currDate +"</p><div class='box'><span class='category-task font-pop text-color-purple'>" + mensagemCompleted + 
+                            "</span> <p class='text-grid font-pop text-color-purple'>Congrats, your <b>"+ myTasks[k].title +"</b> class is now completed."
+                            "</p>" 
+                            qtyBox++;   
+                        } 
+                        
                       
                     } else{   
-                        container.innerHTML += "<div class='box '><span class='category-task font-pop text-color-purple'>" + mensagem + 
-                        "</span> <p class='text-grid font-pop text-color-purple'>"+ myTasks[k].title +
-                        "</p>"
+                        container.innerHTML += "<div class='box'><span class='category-task font-pop text-color-purple'>" + mensagemCompleted + 
+                        "</span> <p class='text-grid font-pop text-color-purple'>Congrats, your <b>"+ myTasks[k].title +"</b> class is now completed."
+                        "</p>" 
+                        qtyBox++;   
                     }
+                }
+
+                // Exibe a notificação das tarefas concluídas
+         
+                }
+
+                // Exibe as notificações das tarefas em progresso na ordem desejada
+                for (var n = 0; n < notificacoesProgresso.length; n++) {
+                var notificacao = notificacoesProgresso[n];
+            
+                var mensagemProgress = '';
+
+                if (notificacao.diferencaMinutos > 0) {
+                    var dias = Math.floor(notificacao.diferencaMinutos / (24 * 60));
+                    var horas = Math.floor((notificacao.diferencaMinutos % (24 * 60)) / 60);
+                    var minutos = notificacao.diferencaMinutos % 60;
+
+                    if (dias > 0) {
+                    mensagemProgress += dias + (dias === 1 ? ' day ' : ' days ');
+                    } 
+
+                    mensagemProgress += horas + 'h ' + minutos + 'min ago';
+
+                    if(!verifyFirtsTime){
+                        verifyFirtsTime = true;
+                   
+                        
+                        if(myTasks[k].date == todayTru && !verify){
+                            container.innerHTML += "<p class='day-notification'>Today</p><div class='box first'><span class='category-task font-pop text-color-purple'>" + mensagemProgress + 
+                            "</span> <p class='text-grid font-pop text-color-purple'>Your <b>"+ myTasks[k].title +"</b> is still in progress. Do you want to complete it? </p>" 
+                            qtyBox++;   
+                          
+                               // today = currDate;
+                                verify = true;
+                            
+                        }else if(myTasks[k].date == Ontem){
+                        
+                            container.innerHTML += "<p class='day-notification'>Yesterday</p><div class='box'><span class='category-task font-pop text-color-purple'>" + mensagemProgress + 
+                            "</span> <p class='text-grid font-pop text-color-purple'>Your <b>"+ myTasks[k].title +"</b> is still in progress. Do you want to complete it? </p>" 
+                            qtyBox++;   
+                        } else {
+                      
+                            container.innerHTML += "<p class='day-notification'>"+ currDate +"</p><div class='box'><span class='category-task font-pop text-color-purple'>" + mensagemProgress + 
+                            "</span> <p class='text-grid font-pop text-color-purple'>Your <b>"+ myTasks[k].title +"</b> is still in progress. Do you want to complete it? </p>" 
+                            qtyBox++;   
+                        } 
+                        
+                      
+                    } else{   
+                        container.innerHTML += "<div class='box'><span class='category-task font-pop text-color-purple'>" + mensagemProgress + 
+                        "</span> <p class='text-grid font-pop text-color-purple'>Your <b>"+ myTasks[k].title +"</b> is still in progress. Do you want to complete it? </p>" 
+                        qtyBox++;   
+                    }
+                }
+
+             
+             
+                }
+
+                // Exibe as notificações das tarefas a serem feitas
+                for (var n = 0; n < notificacoesToDo.length; n++) {
+                var notificacao = notificacoesToDo[n];
+                
+                var mensagemTodo = 'Task will start in 5 minutes';
+
+                if(!verifyFirtsTime){
+                    verifyFirtsTime = true;
+       
+                    
+                    if(myTasks[k].date == todayTru && !verify){
+                        container.innerHTML += "<p class='day-notification'>Today</p><div class='box first'><span class='category-task font-pop text-color-purple'>" + mensagemTodo + 
+                        "</span> <p class='text-grid font-pop text-color-purple'>"+  user +", your <b>"+ myTasks[k].title +"</b> should start right now."
+                        "</p>" 
+                        qtyBox++;   
+         
+                    
+                            verify = true;
+                        
+                    }else if(myTasks[k].date == Ontem){
+                 
+                        container.innerHTML += "<p class='day-notification'>Yesterday</p><div class='box'><span class='category-task font-pop text-color-purple'>" + mensagemTodo + 
+                        "</span> <p class='text-grid font-pop text-color-purple'>"+  user +", your <b>"+ myTasks[k].title +"</b> should start right now."
+                        "</p>" 
+                        qtyBox++;   
+                    } else {
+                   
+                        container.innerHTML += "<p class='day-notification'>"+ currDate +"</p><div class='box'><span class='category-task font-pop text-color-purple'>" + mensagemTodo + 
+                        "</span> <p class='text-grid font-pop text-color-purple'>"+  user +", your <b>"+ myTasks[k].title +"</b> should start right now."
+                        "</p>"  
+                        qtyBox++;   
+                    } 
+                    
+                  
+                } else{   
+                    container.innerHTML += "<div class='box'><span class='category-task font-pop text-color-purple'>" + mensagemTodo + 
+                        "</span> <p class='text-grid font-pop text-color-purple'>"+  user +", your <b>"+ myTasks[k].title +"</b> should start right now."
+                        "</p>" 
+                    qtyBox++;   
+                }
+
+        
+                }
+               
+             
                 
             }
+
+           
         } 
-      
-        // Obtém o valor da data atual e subtrai o número de dias
+
+
+        if(qtyBox > 3){
+            footer.setAttribute("style", "position: sticky;")
+           } else{
+            footer.setAttribute("style", "position: absolute;")
+           }
     
+
     }
 }
 
@@ -180,5 +327,12 @@ function formatarNumero(valor) {
     return valor < 10 ? `0${valor}` : valor;
 }
 
+function qtyZero(){
+    qtyBox = 0; 
+}
 
 
+
+    
+    
+   

@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/createAccount.css">
+    <script src="/js/verifyLogin.js"></script>
     <script src="/js/index.js"></script>
+    <script src="/js/login.js" ></script>
     <title>Desafio 2</title>
 </head>
 <body>
@@ -19,10 +21,10 @@
        <div class="page-wrapper">
            <div>
                 <div class="login-image">
-                    <img id="image-profile" src="../../asset/img/Group 3.png" alt="Caderno de Anotações e bolinhas">
+                    <img id="image-profile" src="../../asset/img/Group 3.png" alt="Caderno de Anotações e bolinhas" onload="editProfile()" >
                 </div>
                 <div>
-                    <h1 class="big-title font-pop login-title">Welcome</h1>
+                    <h1 class="big-title font-pop login-title">Edit Profile</h1>
                 </div>
                 <div>
                  <label class="profile-picture" htmlFor="picture" >
@@ -34,7 +36,7 @@
                 </div>
                 <form class="form-login" >
                     <div >
-                        <label htmlFor="nome" ></label>
+                        <label htmlFor="nome"></label>
                         <input type="text" name="nome" id="nome" placeholder="Nome">
                     </div>
                     <div >
@@ -49,8 +51,8 @@
                         <label htmlFor="senha" ></label>
                         <input type="password" name="senha" id="senha" placeholder="Password">
                     </div>
-                    <div class="button-login"> 
-                        <input type="submit" value="Save" onclick="createUser()"/>
+                    <div class="button-login" onclick="saveChanges()"> 
+                        <input type="button" value="Save"  />
                     </div>
                     <div class="text-login">
                         <p class="text-color-gray text-sm font-pop">Already have an account? <a onclick="linkPages('./login.html')">Log in</a></p>
@@ -63,9 +65,8 @@
     </main> 
 
 
-    <script src="/js/login.js"></script>
+    
    
-    <script src="/js/image.js"></script>
 
 </body>
 

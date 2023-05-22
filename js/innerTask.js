@@ -1,5 +1,6 @@
 var user = document.getElementById('user-name');
 var Picture = document.getElementById('picture-profile');
+var role = document.getElementById('user-role')
 var container_box = document.querySelector('.container-box');
 var box = document.querySelector('.box');
 var actualTab = '';
@@ -26,19 +27,19 @@ for(let i = 0; i < arr.length; i++){
     if(arr[i].userLogged === true){
         userName = arr[i].email;
         Name = arr[i].nome;
-        console.log( Name)
-        console.log('poxa ' + arr[i].picture)
        if(user != null){
            user.innerHTML = Name;
-           Picture.src =  arr[i].picture;;
+           if(role != null){
+               role.innerHTML = arr[i].role;
+           }
+           Picture.src =  arr[i].picture;
         }
     } 
 }
 
 
 for(let i = 0; i < myTasks.length; i++){
-    console.log(myTasks[i].userName)
-    console.log(userName)
+
     if(userName == myTasks[i].userName){
         Category = myTasks[i].category;
         Title = myTasks[i].title;
@@ -47,8 +48,6 @@ for(let i = 0; i < myTasks.length; i++){
     } 
 }
 
-console.log(arr)
-console.log(myTasks)
 
 var lastTab = '';
 
@@ -98,7 +97,6 @@ function innerTask(){
         }
 
         
-
         if(userName === myTasks[i].userName ){
             Category = myTasks[i].category;
             Title = myTasks[i].title;
@@ -113,6 +111,8 @@ function innerTask(){
        End_time +"</p></div>"
        qtyBox++;       
     } 
+
+
     if(qtyBox > 3){
         footer.setAttribute("style", "position: sticky;")
        } else{
@@ -124,6 +124,8 @@ function innerTask(){
 }
 lastTab = actualTab;
 }
+
+
 
 
 

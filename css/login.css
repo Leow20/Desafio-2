@@ -21,7 +21,7 @@
     flex-direction: column;
 }
 
-.form-login input[type="password"], .form-login input[type="email"] {
+.form-login input[type="password"], .form-login input[type="email"], .form-login input[type="text"] {
     width: 261px;
     height: 36px;
     margin-bottom: 10px;
@@ -33,7 +33,7 @@
 }
 
 
-.form-login input[type="password"]:hover, .form-login input[type="email"]:hover{
+.form-login input[type="password"]:hover, .form-login input[type="email"]:hover, .form-login input[type="text"]:hover{
     border: solid 1px #4c51a5
 }
 

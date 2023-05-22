@@ -13,7 +13,7 @@
     <script src="/js/index.js"></script>
     <title>Desafio 2</title>
 </head>
-<body onload="taskState(); cachePage('profile.html') ">
+<body onload="cachePage('profile.html'); taskState()" >
     <main>
         <div class="page-wrapper">
             <div class="box-margin">
@@ -26,15 +26,15 @@
                     <img id="picture-profile" src="/asset/img/avater.png">
                 </div>  
                 <div class="user-text">
-                    <h5 class="text-color-purple font-pop text-mdx">Hello,</h5>
-                    <p id="user-name" class="text-color-purple font-pop text-mdx">Shafa Salsa</p>
+                    <h5 id="user-name" class="text-color-purple font-pop text-mdx">Hello,</h5>
+                    <p id="user-role" class="text-color-purple font-pop text-mdx">Shafa Salsa</p>
                 </div>
-                <button class="md-button-profile">Edit profile</button>
+                <button class="md-button-profile" onclick="linkPages('./editProfile.html')">Edit profile</button>
             </div>
 
             <div class="box-user">
                 <div class="tasks-completed">
-                    <p class="font-pop text-color-white percentage-completed">Amazing</p>     
+                    <p id="amazing" class="font-pop text-color-white percentage-completed">Amazing</p>     
                 </div>
                 <h3 id="text-completed" class="tasks-todo text-color-white text-color-purple font-pop text-mdx">You have 3 more tasks to do!</h3>
                 <div > 
@@ -63,11 +63,11 @@
         </div>
         <footer>
             <div class="icons-footer">
-                <img class="cursor-pointer" src="/asset/img/Vectora.svg" alt="Home" onclick="linkPages('./home.html')">
+                <img class="cursor-pointer" src="/asset/img/🦆 icon _home_.svg" alt="Home" onclick="linkPages('./home.html')">
                 <img class="cursor-pointer" src="/asset/img/Vector-1.svg" alt="Agenda" onclick="linkPages('./taskTodo.html')">
                 <img class="cursor-pointer" id="details-icon" src="/asset/img/🦆 icon _plus circle_.png" alt="Icone de Detalhes" onclick="linkPages('./createTask.html')">
                 <img class="cursor-pointer" src="/asset/img/Vector-3.svg" alt="Icone de Pesquisa" onclick="linkPages('./notification.html')">
-                <img class="cursor-pointer" src="/asset/img/🦆 icon _profile circle_.svg" alt="Perfil">
+                <img class="cursor-pointer" src="/asset/img/🦆 icon _profile circle_ (1).svg" alt="Perfil">
             </div>
         </footer>
     </main> 

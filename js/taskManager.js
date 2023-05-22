@@ -221,7 +221,6 @@ function selectedHome(){
 
 for(let i = 0; i < arr.length; i++){
     if(arr[i].userLogged === true){
-        alert("O usuario logado é:" + arr[i].nome);
         userName = arr[i].email;
     } 
 }
@@ -249,7 +248,7 @@ function createTask(){
     myTasks = JSON.parse(localStorage.getItem('myTasks')); 
 }
 
-   console.log(myTasks)
+
 
    let Title = document.getElementById("title").value;
    let Date = document.getElementById("date").value;
@@ -264,8 +263,6 @@ function createTask(){
    if(Title === null || Title === ""){
        return alert("Você Precisa Preencher o campo Title")
     }
-
- alert(Date);
 
     if(Date === null ||Date === '' ){
         return alert("Você Precisa Preencher o campo Date")
@@ -286,26 +283,26 @@ function createTask(){
      getDateTime();
      
      if(date.min > date.value){
-        alert('Não pode isso ai dog')
+        alert('Verifique o campo de data')
         return;
      }  else {
         if(date.value === date.min){
             if(start.value <= start.min){
-                alert('Não pode isso ai dog')
+                alert('Verifique os campos de horário')
                 return;
             } else {
                 if(end.value > start.value){
-                    alert('Boa dog')
+                    alert('Tarefa Cadastrada')
                 } else{
-                    alert('Não pode isso ai dog')
+                    alert('Verifique os campos de horário')
                     return;
                 }
             }
         } else {
             if(end.value > start.value){
-                alert('Boa dog')
+                alert('Tarefa Cadastrada')
             } else {
-                alert('Não pode isso ai dog')
+                alert('Verifique os campos de horário')
                 return;
             }
         }
@@ -323,8 +320,6 @@ function createTask(){
      unselect();
 
      localStorage.myTasks = JSON.stringify(myTasks);
-     //MODAL
-     alert('modal');
     }
 
     function getDateTime() {
@@ -348,7 +343,6 @@ function createTask(){
 
     function taskState(){
         var completedQty = 0;
-        alert('funciono');
         var currDate = new Date()
         var year = currDate.getFullYear()
         var month = (currDate.getMonth() + 1).toString().padStart(2, "0")
@@ -379,7 +373,7 @@ function createTask(){
                        myTasks[i].state = 'progress';
                     } else if(Start_time < currentTime && End_time < currentTime){
                         myTasks[i].state = 'completed';
-                        console.log('aqui ' + currentDate)
+                      
                         if(myTasks[i].date == currentDate){
                             completedQty++;
                         }
@@ -388,10 +382,10 @@ function createTask(){
                     }
                 }
                  localStorage.myTasks = JSON.stringify(myTasks);
-                 console.log(myTasks)
+            
             } 
             localStorage.myTasks = JSON.stringify(myTasks);
-            console.log(myTasks)
+         
         }
 
         qtyCategory();
@@ -405,6 +399,7 @@ function createTask(){
             var currentDate = `${year}-${month}-${day}`;
             var task_todo = document.getElementById('text-todo');
             var task_completed = document.getElementById('text-completed');
+            var text_amazing = document.getElementById('amazing')
             var college_text = document.getElementById('category-college-text');
             var college_work = document.getElementById('category-work-text');
             var college_home = document.getElementById('category-home-text');
@@ -425,7 +420,7 @@ function createTask(){
             var qtyCompletedTru = 0;
 
             for(let i = 0; i < myTasks.length; i++){
-                if(myTasks[i].state === 'completed'){
+                if(myTasks[i].state === 'completed' && userName == myTasks[i].userName){
                     qtyCompletedTru++;
                 }
             }
@@ -445,53 +440,45 @@ function createTask(){
                     for(let j = 0; j < myTasks.length; j++)
                
                     if(myTasks[j].userName == nome){
-                    console.log('dia' + currentDate)
-                    console.log("dia curente " + myTasks[j].date)
-                    console.log("categoriaaaaa " + myTasks[j].category)
+                 
     
                     if(currentDate == myTasks[j].date && myTasks[j].category == 'college'){
                         qtyCollege++;
-                        console.log("categoria " + myTasks[j].category)
                     }
     
                     if(currentDate == myTasks[j].date && myTasks[j].category == 'work'){
                         qtyWork++;
-                        console.log("categoria " + myTasks[j].category)
                     }
     
                     if(currentDate == myTasks[j].date && myTasks[j].category == 'social'){
                         qtySocial++;
-                        console.log("categoria " + myTasks[j].category)
                     }
     
                     if(currentDate == myTasks[j].date && myTasks[j].category == 'study'){
                         qtyStudy++;
-                        console.log("categoria " + myTasks[j].category)
                     }
     
                     if(currentDate == myTasks[j].date && myTasks[j].category == 'project'){
                         qtyProject++;
-                        console.log("categoria " + myTasks[j].category)
                     }
     
                     if(currentDate == myTasks[j].date && myTasks[j].category == 'home'){
                         qtyHome++;
-                        console.log("categoria " + myTasks[j].category)
                     }
                 }
     
                 var totalQty = qtyWork + qtyCollege + qtyStudy + qtySocial + qtyProject + qtyHome;
      
-                console.log(qtyCollege)
-                console.log(qtyWork)
-                console.log(qtyStudy)
-                console.log(qtySocial)
-                console.log(qtyProject)
-                console.log(qtyHome)
+        
 
                 if(task_completed != null){
-                    task_completed.innerText = 'You have completed ' + qtyCompletedTru +' task!' 
-                }
+                    if(qtyCompletedTru > 0){
+                        task_completed.innerText = 'You have completed ' + qtyCompletedTru +' task!' 
+                    } else{
+                        task_completed.innerText = "You haven't completed any tasks yet"
+                        text_amazing.innerHTML = "";
+                    }
+                } 
                 
                 var calcBar = 0;
 
@@ -516,21 +503,20 @@ function createTask(){
                
 
             } else{
-                percentage_text.innerText = ''; 
-                percentage_bar.setAttribute("style", "width:" + 0 + "%;")
-                percentage_bar_border.setAttribute("style", "display: none;")
-                img_box_home.setAttribute("style", "bottom: 20px;") 
-                task_todo.innerText = "You don't have any task yet"
-                subtitle_home.setAttribute("style", "margin-top: 60px;")
+                if(percentage_bar != null){
+                    percentage_text.innerText = ''; 
+                    percentage_bar.setAttribute("style", "width:" + 0 + "%;")
+                    percentage_bar_border.setAttribute("style", "display: none;")
+                    img_box_home.setAttribute("style", "bottom: 20px;") 
+                    task_todo.innerText = "You don't have any task yet"
+                    subtitle_home.setAttribute("style", "margin-top: 60px;")
+                }
             }
     
             localStorage.myTasks = JSON.stringify(myTasks);
-            
-            console.log(qtyCollege + 'aqui ooooooooo')
 
-            alert(pageCache)
 
-            if(pageCache != 'taskTodo.html'){
+            if(pageCache != 'taskTodo.html' || pageCache != 'profile.html'){
             college_text.innerText = qtyCollege + ' Tasks'; 
             college_work.innerText = qtyWork + ' Tasks'; 
             college_social.innerText = qtySocial + ' Sociaç'; 
