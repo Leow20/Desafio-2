@@ -69,15 +69,15 @@ function showCompleted(){
     
 }
 
+
+showTodo()
+innerTask()
+
+
 if(pageCache == 'profile.html'){
     showCompleted()
     innerTask()
 }
-
-    showTodo()
-    innerTask()
-    
-
   
 
     

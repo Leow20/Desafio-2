@@ -310,7 +310,7 @@ for(let i = 0; i < arr.length; i++){
         } 
 
 
-        if(qtyBox > 3){
+        if(qtyBox > 4){
             footer.setAttribute("style", "position: sticky;")
            } else{
             footer.setAttribute("style", "position: absolute;")
