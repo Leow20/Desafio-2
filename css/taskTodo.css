@@ -68,7 +68,22 @@
 .slider-task{
     display: flex;
     justify-content: space-between;
+    align-content: center;
     align-items: center;
+    overflow: hidden;
+}
+
+.slider-task div{
+    display: flex;
+    padding-bottom: 4px;
+    text-align: center;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    margin-left: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #F6F2FF;
 }
 
 .day-task-box{
@@ -78,7 +93,13 @@
     background-color: #D1D0F9;
     margin :21px 0 25px;
     cursor:pointer;
+    user-select:none;
   
+}
+
+.day-task-box-selected{
+    background-color: #6368D9;
+    color: #D1D0F9;
 }
 
 .tabs{

@@ -42,9 +42,6 @@ if (!localStorage.pageCache){
 }
 
 
-
-
-
 function selectedCollege(){
     if(verifyCollege){
         college.classList.remove("selected-category");
@@ -71,7 +68,6 @@ function selectedCollege(){
     project.classList.remove("selected-category")
     home.classList.remove("selected-category")
 }
-
 
 function selectedWork(){
     if(verifyWork){
@@ -258,7 +254,6 @@ function createTask(){
    let State = '';
    
    
- 
    
    if(Title === null || Title === ""){
        return alert("Você Precisa Preencher o campo Title")
@@ -468,8 +463,6 @@ function createTask(){
                 }
     
                 var totalQty = qtyWork + qtyCollege + qtyStudy + qtySocial + qtyProject + qtyHome;
-     
-        
 
                 if(task_completed != null){
                     if(qtyCompletedTru > 0){
@@ -483,7 +476,7 @@ function createTask(){
                 var calcBar = 0;
 
                  if(completedQty > 0) {
-                    calcBar = Math.floor((((totalQty - completedQty) * 100) / completedQty)) ;
+                    calcBar = Math.floor((((totalQty - completedQty) * 100) / totalQty)) ;
                     calcBar = 100 - calcBar;
                 } else {
                     calcBar = 0;
@@ -540,6 +533,11 @@ function createTask(){
         Category = '';
         unselect();
     }
+
+
+
+      
+
 
  
 

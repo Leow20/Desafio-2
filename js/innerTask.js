@@ -9,6 +9,7 @@ var tab_progress = document.querySelector('#progress');
 var tab_completed = document.querySelector('#completed');
 var footer = document.getElementById('footer');
 var qtyBox = 0;
+var dateSelected;
 
 
 
@@ -22,6 +23,8 @@ if (localStorage.myTasks){
 if (localStorage.meuArr){             
     arr = JSON.parse(localStorage.getItem('meuArr')); 
 }
+
+var elementArr = JSON.parse(localStorage.getItem('elementArr')); 
 
 for(let i = 0; i < arr.length; i++){
     if(arr[i].userLogged === true){
@@ -71,11 +74,22 @@ if(pageCache == 'profile.html'){
     innerTask()
 }
 
+    showTodo()
+    innerTask()
+    
+
+  
+
+    
+          
+
 function innerTask(){
     qtyBox = 0;
+  
     if(actualTab != lastTab){
         container_box.innerHTML = ""; 
     }
+    
     for(let i = 0; i < myTasks.length; i++){
 
         if(actualTab == tab_todo.id){
@@ -97,20 +111,33 @@ function innerTask(){
         }
 
         
+        
         if(userName === myTasks[i].userName ){
             Category = myTasks[i].category;
             Title = myTasks[i].title;
             Start_time = myTasks[i].start_time;
             End_time = myTasks[i].end_time;
 
-           
-   if(actualTab != lastTab && myTasks[i].state == actualTab){
+               
+              
+    elementArr = JSON.parse(localStorage.getItem('elementArr')); 
+    console.log(myTasks[i].date + ' bbbbbbbb')
+    console.log(elementArr)
+    console.log(myTasks[i].state + '   aaaaaaaaa')      
+    console.log(actualTab)
+    
+    if(myTasks[i].date === elementArr){
+   if(lastTab != actualTab && myTasks[i].state === actualTab ){
        container_box.innerHTML += "<div class='box '><span class='category-task font-pop text-color-purple'>" + Category + 
        "</span> <p class='text-grid font-pop text-color-purple'>"+ Title +
        "</p><p class='time-task font-pop text-color-purple'><img src='/asset/img/🦆 icon _clock_.svg' alt='imagem relogio'>"+ Start_time+" - "+ 
        End_time +"</p></div>"
        qtyBox++;       
     } 
+} else{
+    container_box.innerHTML = ''
+}
+}
 
 
     if(qtyBox > 3){
@@ -118,16 +145,72 @@ function innerTask(){
        } else{
         footer.setAttribute("style", "position: absolute;")
        }
-} 
+ 
 
         
 }
-lastTab = actualTab;
+
+    lastTab = actualTab;
+
 }
 
 
 
+function getDates() {
+    var currentDate = new Date(); 
+  
+    var dates = [];
+  
+  
+    for (var i = 3; i > 0; i--) {
+      var date = new Date(currentDate);
+      date.setDate(currentDate.getDate() - i);
+      dates.push(date);
+    }
+  
+  
+    dates.push(currentDate);
+  
 
+    for (var i = 1; i <= 7; i++) {
+      var date = new Date(currentDate);
+      date.setDate(currentDate.getDate() + i);
+      dates.push(date);
+    }
+  
+    return dates;
+  }
+ 
 
+  var dates = getDates();
 
+for (let c = 0; c < dates.length; c++) {
+  var date = dates[c];
+  var day = date.getDate().toString().padStart(2, '0'); 
+  var month = (date.getMonth() + 1).toString().padStart(2, '0');
+
+  var elementId = 'date-' + c;
+  var element = document.getElementById(elementId);
+
+  if (element) {
+    element.innerHTML = `2023-${month}-${day}`;
+    var dataSel = `2023-${month}-${day}`;
+  }
+
+  var elemento = element.dataset.date;
+
+  console.log('aaaaa' + elemento);
+
+  function getDate(element) {
+    dateSelected = element.innerHTML;
+    element.dataset.date = dateSelected;
+    var elementArr = '';
+    lastTab = ''
+    elementArr = dateSelected;
+    console.log('Data selecionada:', dateSelected);
+    localStorage.elementArr = JSON.stringify(elementArr);
+    return dateSelected;
+  }
+}
+ 
 

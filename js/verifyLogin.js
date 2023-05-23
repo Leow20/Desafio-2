@@ -7,7 +7,7 @@ if (localStorage.meuArr){
 
 
 for(let i = 0; i < arr.length; i++){
-    event.preventDefault();
+
     if(arr[i].userLogged === true){
         verify = true;
         break;
